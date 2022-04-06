@@ -8,43 +8,60 @@ import javax.persistence.Id;
 public class MyTask {
 	
 	//Autopopulate id
-	private @Id @GeneratedValue Long _id;
-	private String _summary;
-	private int _state;
+	private @Id @GeneratedValue Long id;
+	private String summary;
+	private int state;
 	
 	public Long get_id() {
-		return _id;
+		return id;
 	}
 
-	public void set_id(Long _id) {
-		this._id = _id;
+	public void set_id(Long id) {
+		this.id = id;
 	}
 
 	public String get_summary() {
-		return _summary;
+		return summary;
 	}
 
-	public void set_summary(String _summary) {
-		this._summary = _summary;
+	public void set_summary(String summary) {
+		this.summary = summary;
 	}
 
 	public int get_state() {
-		return _state;
+		return state;
 	}
 
-	public void set_state(int _state) {
-		this._state = _state;
+	public void set_state(int state) {
+		this.state = state;
+	}
+	
+	public MyTask() {}
+	
+	/**
+	 * @param summary
+	 * 
+	 */
+	public MyTask(String summary) {
+		super();
+		this.summary = summary;
+		this.state = 0;
 	}
 	
 	/**
-	 * @param _id
-	 * @param _summary
-	 * @param _state
+	 * @param summary
+	 * @param state
 	 */
-	public MyTask(String _summary, int _state) {
+	public MyTask(String summary, int state) {
 		super();
-		this._summary = _summary;
-		this._state = _state;
+		this.summary = summary;
+		this.state = state;
 	}
+	/*
+	 * 0 new
+	 * 1 in progress
+	 * 2 Completed
+	 * 
+	 * */
 
 }
