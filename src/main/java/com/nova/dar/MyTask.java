@@ -1,5 +1,6 @@
 package com.nova.dar;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -9,6 +10,7 @@ public class MyTask {
 	
 	//Autopopulate id
 	private @Id @GeneratedValue Long id;
+	@Column(columnDefinition = "varchar(256)")
 	private String summary;
 	private int state;
 	
@@ -54,6 +56,18 @@ public class MyTask {
 	 */
 	public MyTask(String summary, int state) {
 		super();
+		this.summary = summary;
+		this.state = state;
+	}
+	
+	/**
+	 * @param id
+	 * @param summary
+	 * @param state
+	 */
+	public MyTask(Long id, String summary, int state) {
+		super();
+		this.id = id;
 		this.summary = summary;
 		this.state = state;
 	}

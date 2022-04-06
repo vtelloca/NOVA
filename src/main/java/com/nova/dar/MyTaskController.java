@@ -49,8 +49,8 @@ public class MyTaskController {
 	}
 
 	@GetMapping("/getTaskById")
-	public Optional<MyTask> getTaskById(@RequestParam final Long id) {
-		return task_repository.findById(id);
+	public MyTask getTaskById(@RequestParam final Long id) {
+		return task_repository.findById(id).orElseThrow(() -> new MyTaskNotFound(id));
 	}	
 
 	@DeleteMapping("/deleteTaskById")
