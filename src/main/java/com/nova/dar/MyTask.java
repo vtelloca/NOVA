@@ -3,15 +3,17 @@ package com.nova.dar;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class MyTask {
 	
 	//Autopopulate id
-	private @Id @GeneratedValue Long id;
+	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 	@Column(columnDefinition = "varchar(256)")
-	private String summary;
+	private String description;
+
 	private int state;
 	
 	public Long get_id() {
@@ -22,12 +24,12 @@ public class MyTask {
 		this.id = id;
 	}
 
-	public String get_summary() {
-		return summary;
+	public String get_description() {
+		return description;
 	}
 
-	public void set_summary(String summary) {
-		this.summary = summary;
+	public void set_description(String description) {
+		this.description = description;
 	}
 
 	public int get_state() {
@@ -41,34 +43,34 @@ public class MyTask {
 	public MyTask() {}
 	
 	/**
-	 * @param summary
+	 * @param description
 	 * 
 	 */
-	public MyTask(String summary) {
+	public MyTask(String description) {
 		super();
-		this.summary = summary;
+		this.description = description;
 		this.state = 0;
 	}
 	
 	/**
-	 * @param summary
+	 * @param description
 	 * @param state
 	 */
-	public MyTask(String summary, int state) {
+	public MyTask(String description, int state) {
 		super();
-		this.summary = summary;
+		this.description = description;
 		this.state = state;
 	}
 	
 	/**
 	 * @param id
-	 * @param summary
+	 * @param description
 	 * @param state
 	 */
-	public MyTask(Long id, String summary, int state) {
+	public MyTask(Long id, String description, int state) {
 		super();
 		this.id = id;
-		this.summary = summary;
+		this.description = description;
 		this.state = state;
 	}
 	/*

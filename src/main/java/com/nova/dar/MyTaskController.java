@@ -47,6 +47,11 @@ public class MyTaskController {
 	List<MyTask> completedTask() {
 		return task_repository.findByState(2);
 	}
+	
+	@GetMapping("/pendingTask")
+	List<MyTask> pendingTask() {
+		return task_repository.findByState(1);
+	}
 
 	@GetMapping("/getTaskById")
 	public MyTask getTaskById(@RequestParam final Long id) {
