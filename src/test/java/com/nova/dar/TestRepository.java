@@ -24,14 +24,14 @@ public class TestRepository {
 	@BeforeEach
 	public void setUp() {
 		this.task = new MyTask(ID, "Task 1", 0);
-		this.task2 = new MyTask(ID+1, "Task 2", 2);
-		this.task3 = new MyTask(ID+2, "Task 3", 1);
+		this.task2 = new MyTask(ID + 1, "Task 2", 2);
+		this.task3 = new MyTask(ID + 2, "Task 3", 1);
 	}
 
 	@Test
 	void contextLoads() {
 	}
-	
+
 	@Test
 	public void getAllTaskTest() {
 		List<MyTask> tasks = new ArrayList<MyTask>();
@@ -39,11 +39,11 @@ public class TestRepository {
 		tasks.add(this.task);
 		tasks.add(this.task2);
 		tasks.add(this.task3);
-		
-		finalTasks  = task_repository.findAll();
-		
-		for(int i = 0; i < finalTasks.size(); i++) {
-				
+
+		finalTasks = task_repository.findAll();
+
+		for (int i = 0; i < finalTasks.size(); i++) {
+
 //			System.out.println('a' + tasks.get(i).get_description() + tasks.get(i).get_id() + tasks.get(i).get_state());
 //			System.out.println('b' + finalTasks.get(i).get_description() + finalTasks.get(i).get_id() + finalTasks.get(i).get_state());
 
@@ -52,29 +52,28 @@ public class TestRepository {
 			assertThat(tasks.get(i).get_id()).isEqualTo(finalTasks.get(i).get_id());
 		}
 	}
-	
+
 	@Test
 	public void completedTask() {
 		List<MyTask> completedTasks = new ArrayList<MyTask>();
 		completedTasks = task_repository.findByState(2);
-		for(MyTask tc : completedTasks) {
+		for (MyTask tc : completedTasks) {
 			assertThat(tc.get_state()).isEqualTo(2);
 		}
 	}
-	
+
 	@Test
 	public void pendingTask() {
 		List<MyTask> pendingTask = new ArrayList<MyTask>();
 		pendingTask = task_repository.findByState(1);
-		for(MyTask tc : pendingTask) {
+		for (MyTask tc : pendingTask) {
 			assertThat(tc.get_state()).isEqualTo(1);
 		}
 	}
-		
 
 	@Test
 	public void getTaskByIdTest() {
-		
+
 		MyTask testtask = task_repository.findById(ID).orElseThrow(() -> new MyTaskNotFound(ID));
 
 		assertEquals(this.task.get_description(), testtask.get_description());
@@ -82,17 +81,17 @@ public class TestRepository {
 		assertThat(testtask.get_id()).isEqualTo(ID);
 	}
 
-	
 	@Test
 	public void createTaskTest() {
-		MyTask testtask = new MyTask(ID+3, "Task 3", 0);
+		MyTask testtask = new MyTask(ID + 3, "Task 3", 0);
 		MyTask newTask = task_repository.save(testtask);
-		
+
 		assertEquals(newTask.get_description(), testtask.get_description());
 		assertThat(testtask.get_state()).isEqualTo(newTask.get_state());
 		assertThat(testtask.get_id()).isEqualTo(newTask.get_id());
 
 	}
+
 	@Test
 	public void updateTaskTest() {
 		String sum = "New";
